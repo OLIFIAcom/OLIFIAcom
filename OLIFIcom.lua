@@ -70,7 +70,7 @@ done
 ]])
 Run_File_OLIFIcom:close()
 ------------------------------------------------------------------------------------------------------------
-local Run_SM = io.open("tk", 'w')
+local Run_SM = io.open("Of", 'w')
 Run_SM:write([[
 #!/usr/bin/env bash
 cd $HOME/OLIFIcom
@@ -84,8 +84,8 @@ Run_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
 os.execute('chmod +x OLIFIcom')
-os.execute('chmod +x tk')
-os.execute('./tk')
+os.execute('chmod +x Of')
+os.execute('./Of')
 Status = true
 else   
 f:close()  
@@ -2251,12 +2251,14 @@ elseif text == "تحديث" then
 dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث ملفات البوت")
 elseif text == 'تحديث السورس 🔂' then
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
+os.execute('rm -rf OLIFIcom.lua')
+os.execute('wget https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua')
+dofile('OLIFIcom.lua')  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 elseif text == 'تحديث السورس' then
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
+os.execute('rm -rf OLIFIcom.lua')
+os.execute('wget https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua')
+dofile('OLIFIcom.lua')  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 end
 if text == 'الملفات' then
@@ -6912,12 +6914,11 @@ elseif text == 'السورس' or text == 'سورس' or text == 'ياسورس'  t
 send(msg.chat_id_, msg.id_,[[
 
 [Olifay Team ](t.me/jJJyT)     
-_____________________
+------------------
 [Channel Olifay  ](t.me/jJJyT)     
 
 [Developer Olifay ](t.me/JAN_SAUD)     
 
- 
 [Bot Olifay ](t.me/olifaybot)     
 
 ]]) 
