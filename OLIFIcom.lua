@@ -2251,14 +2251,12 @@ elseif text == "تحديث" then
 dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث ملفات البوت")
 elseif text == 'تحديث السورس 🔂' then
-os.execute('rm -rf OLIFIcom.lua')
-os.execute('wget https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua')
-dofile('OLIFIcom.lua')  
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 elseif text == 'تحديث السورس' then
-os.execute('rm -rf OLIFIcom.lua')
-os.execute('wget https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua')
-dofile('OLIFIcom.lua')  
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 end
 if text == 'الملفات' then
