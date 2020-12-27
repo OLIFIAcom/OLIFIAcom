@@ -5,12 +5,12 @@ json = dofile("./lib/JSON.lua")
 URL = dofile("./lib/url.lua")
 serpent = dofile("./lib/serpent.lua")
 redis = dofile("./lib/redis.lua").connect("127.0.0.1", 6379)
-Server_OLIFIAcom = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
+Server_OLIFIcom = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 ------------------------------------------------------------------------------------------------------------
 local function Load_File()
 local f = io.open("./Info_Sudo.lua", "r")  
 if not f then   
-if not redis:get(Server_OLIFIAcom.."Token_DevOLIFIAcom") then
+if not redis:get(Server_OLIFIcom.."Token_DevOLIFIcom") then
 io.write('\n\27[1;35mܛ┆Send Token For Bot : ارسل توكن البوت ...\n\27[0;39;49m')
 local token = io.read()
 if token ~= '' then
@@ -19,7 +19,7 @@ if res ~= 200 then
 io.write('\n\27[1;31mܛ┆Token Is Communication Error\n التوكن غلط جرب مره اخره \n\27[0;39;49m')
 else
 io.write('\n\27[1;31mܛ┆Done Save Token : تم حفظ التوكن \n\27[0;39;49m')
-redis:set(Server_OLIFIAcom.."Token_DevOLIFIAcom",token)
+redis:set(Server_OLIFIcom.."Token_DevOLIFIcom",token)
 end 
 else
 io.write('\n\27[1;31mܛ┆Token was not saved \n لم يتم حفظ التوكن \n\27[0;39;49m')
@@ -27,16 +27,16 @@ end
 os.execute('lua OLIFIcom.lua')
 end
 ------------------------------------------------------------------------------------------------------------
-if not redis:get(Server_OLIFIAcom.."User_DevOLIFIAcom1") then
+if not redis:get(Server_OLIFIcom.."User_DevOLIFIcom1") then
 io.write('\n\27[1;35mܛ┆Send ID For Sudo : ارسل ايدي المطور الاساسي ...\n\27[0;39;49m')
 local User_Sudo = io.read():gsub('@','')
 if User_Sudo ~= '' then
 io.write('\n\27[1;31mܛ┆The ID Is Saved : تم حفظ ايدي المطور\n\27[0;39;49m')
-redis:set(Server_OLIFIAcom.."Id_DevOLIFIAcom",User_Sudo)
+redis:set(Server_OLIFIcom.."Id_DevOLIFIcom",User_Sudo)
 io.write('\n\27[1;35mܛ┆Send UserName For Sudo : ارسل معرف المطور الاساسي ...\n\27[0;39;49m')
 local User_Sudo2 = io.read():gsub('@','')
 if User_Sudo ~= '' then
-redis:set(Server_OLIFIAcom.."User_DevOLIFIAcom1",User_Sudo2)
+redis:set(Server_OLIFIcom.."User_DevOLIFIcom1",User_Sudo2)
 end
 else
 io.write('\n\27[1;31mܛ┆The ID was not Saved : لم يتم حفظ ايدي المطور الاساسي\n\27[0;39;49m')
@@ -44,52 +44,52 @@ end
 os.execute('lua OLIFIcom.lua')
 end
 ------------------------------------------------------------------------------------------------------------
-local DevOLIFIAcom_Info_Sudo = io.open("Info_Sudo.lua", 'w')
-DevOLIFIAcom_Info_Sudo:write([[
+local DevOLIFIcom_Info_Sudo = io.open("Info_Sudo.lua", 'w')
+DevOLIFIcom_Info_Sudo:write([[
 do 
-local OLIFIAcom_INFO = {
-Id_DevOLIFIAcom = ]]..redis:get(Server_OLIFIAcom.."Id_DevOLIFIAcom")..[[,
-UserName_OLIFIAcom = "]]..redis:get(Server_OLIFIAcom.."User_DevOLIFIAcom1")..[[",
-Token_Bot = "]]..redis:get(Server_OLIFIAcom.."Token_DevOLIFIAcom")..[["
+local OLIFIcom_INFO = {
+Id_DevOLIFIcom = ]]..redis:get(Server_OLIFIcom.."Id_DevOLIFIcom")..[[,
+UserName_OLIFIcom = "]]..redis:get(Server_OLIFIcom.."User_DevOLIFIcom1")..[[",
+Token_Bot = "]]..redis:get(Server_OLIFIcom.."Token_DevOLIFIcom")..[["
 }
-return OLIFIAcom_INFO
+return OLIFIcom_INFO
 end
 
 ]])
-DevOLIFIAcom_Info_Sudo:close()
+DevOLIFIcom_Info_Sudo:close()
 ------------------------------------------------------------------------------------------------------------
-local Run_File_OLIFIAcom = io.open("JJJyT", 'w')
-Run_File_OLIFIAcom:write([[
+local Run_File_OLIFIcom = io.open("OLIFIcom", 'w')
+Run_File_OLIFIcom:write([[
 #!/usr/bin/env bash
-cd $HOME/OLIFIAcom
-token="]]..redis:get(Server_OLIFIAcom.."Token_DevOLIFIAcom")..[["
+cd $HOME/OLIFIcom
+token="]]..redis:get(Server_OLIFIcom.."Token_DevOLIFIcom")..[["
 while(true) do
 rm -fr ../.telegram-cli
 ./tg -s ./OLIFIcom.lua -p PROFILE --bot=$token
 done
 ]])
-Run_File_OLIFIAcom:close()
+Run_File_OLIFIcom:close()
 ------------------------------------------------------------------------------------------------------------
 local Run_SM = io.open("tk", 'w')
 Run_SM:write([[
 #!/usr/bin/env bash
-cd $HOME/OLIFIAcom
+cd $HOME/OLIFIcom
 while(true) do
 rm -fr ../.telegram-cli
-screen -S OLIFIAcom -X kill
-screen -S OLIFIAcom ./OLIFIAcom
+screen -S OLIFIcom -X kill
+screen -S OLIFIcom ./OLIFIcom
 done
 ]])
 Run_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
-os.execute('chmod +x OLIFIAcom')
+os.execute('chmod +x OLIFIcom')
 os.execute('chmod +x tk')
 os.execute('./tk')
 Status = true
 else   
 f:close()  
-redis:del(Server_OLIFIAcom.."Token_DevOLIFIAcom");redis:del(Server_OLIFIAcom.."Id_DevOLIFIAcom");redis:del(Server_OLIFIAcom.."User_DevOLIFIAcom1")
+redis:del(Server_OLIFIcom.."Token_DevOLIFIcom");redis:del(Server_OLIFIcom.."Id_DevOLIFIcom");redis:del(Server_OLIFIcom.."User_DevOLIFIcom1")
 Status = false
 end  
 return Status
@@ -101,10 +101,10 @@ print("\27[36m"..[[
 ------------------------------------------------------------------------------------------------------------
 sudos = dofile("./Info_Sudo.lua")
 token = sudos.Token_Bot
-UserName_Dev = sudos.UserName_OLIFIAcom
+UserName_Dev = sudos.UserName_OLIFIcom
 bot_id = token:match("(%d+)")  
-Id_Dev = sudos.Id_DevOLIFIAcom
-Ids_Dev = {1415616558,sudos.Id_DevOLIFIAcom,bot_id}
+Id_Dev = sudos.Id_DevOLIFIcom
+Ids_Dev = {1415616558,sudos.Id_DevOLIFIcom,bot_id}
 Name_Bot = redis:get(bot_id.."Redis:Name:Bot") or "اوليفاي"
 ------------------------------------------------------------------------------------------------------------
 function var(value)  
@@ -114,14 +114,14 @@ function dl_cb(arg,data)
 -- var(data)  
 end
 ------------------------------------------------------------------------------------------------------------
-function Dev_OLIFIAcom(msg)  
-local Dev_OLIFIAcom = false  
+function Dev_OLIFIcom(msg)  
+local Dev_OLIFIcom = false  
 for k,v in pairs(Ids_Dev) do  
 if msg.sender_user_id_ == v then  
-Dev_OLIFIAcom = true  
+Dev_OLIFIcom = true  
 end  
 end  
-return Dev_OLIFIAcom  
+return Dev_OLIFIcom  
 end 
 function Bot(msg)  
 local idbot = false  
@@ -130,18 +130,18 @@ idbot = true
 end  
 return idbot  
 end 
-function Dev_OLIFIAcom_User(user)  
-local Dev_OLIFIAcom_User = false  
+function Dev_OLIFIcom_User(user)  
+local Dev_OLIFIcom_User = false  
 for k,v in pairs(Ids_Dev) do  
 if user == v then  
-Dev_OLIFIAcom_User = true  
+Dev_OLIFIcom_User = true  
 end  
 end  
-return Dev_OLIFIAcom_User  
+return Dev_OLIFIcom_User  
 end 
 function DeveloperBot(msg)  
 local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
-if Status or Dev_OLIFIAcom(msg) or Bot(msg) then  
+if Status or Dev_OLIFIcom(msg) or Bot(msg) then  
 return true  
 else  
 return false  
@@ -149,7 +149,7 @@ end
 end
 function PresidentGroup(msg)
 local hash = redis:sismember(bot_id.."President:User"..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or Bot(msg) then  
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or Bot(msg) then  
 return true 
 else 
 return false 
@@ -157,7 +157,7 @@ end
 end
 function BasicBuilder(msg) 
 local hash = redis:sismember(bot_id.."Basic:User"..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) then  
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) then  
 return true 
 else 
 return false 
@@ -165,7 +165,7 @@ end
 end
 function Constructor(msg) 
 local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Bot(msg) then     
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Bot(msg) then     
 return true    
 else    
 return false    
@@ -173,7 +173,7 @@ end
 end
 function Owner(msg) 
 local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Bot(msg) then     
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Bot(msg) then     
 return true    
 else    
 return false    
@@ -181,7 +181,7 @@ end
 end
 function Admin(msg) 
 local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then     
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then     
 return true    
 else    
 return false    
@@ -189,7 +189,7 @@ end
 end
 function Vips(msg) 
 local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
-if hash or Dev_OLIFIAcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Admin(msg) or Bot(msg) then     
+if hash or Dev_OLIFIcom(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Admin(msg) or Bot(msg) then     
 return true 
 else 
 return false 
@@ -218,7 +218,7 @@ return var
 end
 ------------------------------------------------------------------------------------------------------------
 function Rank_Checking(user_id,chat_id)
-if Dev_OLIFIAcom_User(user_id) then
+if Dev_OLIFIcom_User(user_id) then
 Status = true  
 elseif tonumber(user_id) == tonumber(bot_id) then  
 Status = true  
@@ -245,7 +245,7 @@ end
 function Get_Rank(user_id,chat_id)
 if tonumber(user_id) == tonumber(1415616558) then  
 Status = "مطور السورس"  
-elseif Dev_OLIFIAcom_User(user_id)  == true then
+elseif Dev_OLIFIcom_User(user_id)  == true then
 Status = "المطور الاساسي"  
 elseif tonumber(user_id) == tonumber(bot_id) then  
 Status = "البوت"
@@ -483,7 +483,7 @@ height_ = 0
 end
 ------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua'
+url = 'https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua'
 file_path = 'Script.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -503,7 +503,7 @@ end
 ------------------------------------------------------------------------------------------------------------ 
 function tdcli_update_callback_value_(Data) 
 tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua'
+url = 'https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua'
 file_path = 'OLIFIcom.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -566,9 +566,9 @@ end
 function Send_Options(msg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "JJJyT")
+local UserName = (data.username_ or "OLIFIcom")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
-data.first_name_ = gmatch or 'OLIFIAcom'
+data.first_name_ = gmatch or 'OLIFIcom'
 end
 if status == "Close_Status" then
 send(msg.chat_id_, msg.id_,"ܛ┆بواسطه -› ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."")
@@ -606,7 +606,7 @@ end
 function Send_Optionspv(chat,idmsg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "JJJyT")
+local UserName = (data.username_ or "OLIFIcom")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
@@ -692,20 +692,20 @@ return false
 end
 end  
 ------------------------------------------------------------------------------------------------------------
-function FilesOLIFIAcom(msg)
+function FilesOLIFIcom(msg)
 File_Bot = dofile("Script.lua")
-if File_Bot.OLIFIAcom and msg then
-Text_File = File_Bot.OLIFIAcom(msg)
+if File_Bot.OLIFIcom and msg then
+Text_File = File_Bot.OLIFIcom(msg)
 end
 send(msg.chat_id_, msg.id_,Text_File)  
 return false
 end
-function FilesOLIFIAcomBot(msg)
+function FilesOLIFIcomBot(msg)
 for v in io.popen('ls Files'):lines() do
 if v:match(".lua$") then
 Text_FileBot = dofile("Files/"..v)
-if Text_FileBot.OLIFIAcomFile and msg then
-Text_FileBot = Text_FileBot.OLIFIAcomFile(msg)
+if Text_FileBot.OLIFIcomFile and msg then
+Text_FileBot = Text_FileBot.OLIFIcomFile(msg)
 end
 end
 end
@@ -817,7 +817,7 @@ end
 send(chat,msg.id_,"ܛ┆تم رفع ملف الخزن بنجاح\nܛ┆تم استرجاع جميع الكروبات ورفع المنشئين والمدراء في البوت")   
 end
 ------------------------------------------------------------------------------------------------------------
-function Dev_OLIFIAcom_File(msg,data)
+function Dev_OLIFIcom_File(msg,data)
 if msg then
 msg = data.message_
 text = msg.content_.text_
@@ -827,7 +827,7 @@ local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_)
 if Status then
 deved = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 deved = true  
 end  
 return deved
@@ -838,7 +838,7 @@ local hash = redis:sismember(bot_id.."President:User"..msg.chat_id_, msg.sender_
 if hash then 
 PresidentGroup = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 PresidentGroup = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -852,7 +852,7 @@ local hash = redis:sismember(bot_id..'Basic:User'..msg.chat_id_, msg.sender_user
 if hash then 
 BasicUser = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 BasicUser = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -869,7 +869,7 @@ local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.send
 if hash then 
 Constructor = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 Constructor = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -889,7 +889,7 @@ local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_us
 if hash then 
 Owner = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 Owner = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -912,7 +912,7 @@ local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user
 if hash then 
 Admiin = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 Admiin = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -938,7 +938,7 @@ local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_i
 if hash then 
 vipss = true  
 end
-if Dev_OLIFIAcom(msg) == true then  
+if Dev_OLIFIcom(msg) == true then  
 vipss = true  
 end
 if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
@@ -1553,27 +1553,27 @@ redis:del(bot_id.."Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user
 return false
 end
 ------------------------------------------------------------------------------------------------------------
-if text and text:match("^- تغير الاشتراك 🧾 .") and Dev_OLIFIAcom(msg) then  
+if text and text:match("^- تغير الاشتراك 🧾 .") and Dev_OLIFIcom(msg) then  
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي معرف القناة')
 return false  
 end
-if text and text:match("تغير رساله الاشتراك ⚙") and Dev_OLIFIAcom(msg) then  
+if text and text:match("تغير رساله الاشتراك ⚙") and Dev_OLIFIcom(msg) then  
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي النص الذي تريده')
 return false  
 end
-if text == "حذف رساله الاشتراك ℹ ." and Dev_OLIFIAcom(msg) then  
+if text == "حذف رساله الاشتراك ℹ ." and Dev_OLIFIcom(msg) then  
 redis:del(bot_id..'text:ch:user')
 send(msg.chat_id_, msg.id_, "ܛ┆تم مسح رساله الاشتراك ")
 return false  
 end
-if text and text:match("^- تعين قناة الاشتراك 📁 .$") and Dev_OLIFIAcom(msg) then  
+if text and text:match("^- تعين قناة الاشتراك 📁 .$") and Dev_OLIFIcom(msg) then  
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي معرف القناة')
 return false  
 end
-if text == "- تفعيل الاشتراك الاجباري 📄 ." and Dev_OLIFIAcom(msg) then  
+if text == "- تفعيل الاشتراك الاجباري 📄 ." and Dev_OLIFIcom(msg) then  
 if redis:get(bot_id..'add:ch:id') then
 local addchusername = redis:get(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_,"ܛ┆الاشتراك الاجباري مفعل \nܛ┆على القناة » ["..addchusername.."]")
@@ -1583,13 +1583,13 @@ send(msg.chat_id_, msg.id_,"ܛ┆اهلا عزيزي المطور \nܛ┆ارس�
 end
 return false  
 end
-if text == "- تعطيل الاشتراك الاجباري 📄 ." and Dev_OLIFIAcom(msg) then  
+if text == "- تعطيل الاشتراك الاجباري 📄 ." and Dev_OLIFIcom(msg) then  
 redis:del(bot_id..'add:ch:id')
 redis:del(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_, "ܛ┆تم تعطيل الاشتراك الاجباري ")
 return false  
 end
-if text == "- الاشتراك الاجباري 📮 ." and Dev_OLIFIAcom(msg) then  
+if text == "- الاشتراك الاجباري 📮 ." and Dev_OLIFIcom(msg) then  
 if redis:get(bot_id..'add:ch:username') then
 local addchusername = redis:get(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_, "ܛ┆تم تفعيل الاشتراك الاجباري \nܛ┆على القناة » ["..addchusername.."]")
@@ -1987,14 +1987,14 @@ redis:del(bot_id.."Filter:Reply:Status"..msg.sender_user_id_..msg.chat_id_)
 return false  end  
 end
 ------------------------------------------------------------------------------------------------------------
-if text and redis:get(bot_id..'GetTexting:DevOLIFIAcom'..msg.chat_id_..':'..msg.sender_user_id_) then
+if text and redis:get(bot_id..'GetTexting:DevOLIFIcom'..msg.chat_id_..':'..msg.sender_user_id_) then
 if text == 'الغاء' or text == 'الغاء ✖' then 
-redis:del(bot_id..'GetTexting:DevOLIFIAcom'..msg.chat_id_..':'..msg.sender_user_id_)
+redis:del(bot_id..'GetTexting:DevOLIFIcom'..msg.chat_id_..':'..msg.sender_user_id_)
 send(msg.chat_id_,msg.id_,'ܛ┆تم الغاء حفظ كليشة المطور')
 return false
 end
-redis:set(bot_id..'Texting:DevOLIFIAcom',text)
-redis:del(bot_id..'GetTexting:DevOLIFIAcom'..msg.chat_id_..':'..msg.sender_user_id_)
+redis:set(bot_id..'Texting:DevOLIFIcom',text)
+redis:del(bot_id..'GetTexting:DevOLIFIcom'..msg.chat_id_..':'..msg.sender_user_id_)
 send(msg.chat_id_,msg.id_,'ܛ┆تم حفظ كليشة المطور')
 send(msg.chat_id_,msg.id_,text)
 return false
@@ -2211,7 +2211,7 @@ redis:srem(bot_id.."List:Rd:Sudo", text)
 return false
 end
 end
-if Dev_OLIFIAcom(msg) then
+if Dev_OLIFIcom(msg) then
 if text == 'نقل الاحصائيات' then
 local Users = redis:smembers(bot_id.."User_Bot")
 local Groups = redis:smembers(bot_id..'Chek:Groups') 
@@ -2251,12 +2251,12 @@ elseif text == "تحديث" then
 dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث ملفات البوت")
 elseif text == 'تحديث السورس 🔂' then
-download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua','Script.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 elseif text == 'تحديث السورس' then
-download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua','Script.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 end
 if text == 'الملفات' then
@@ -2273,11 +2273,11 @@ Files = 'ܛ┆ لا توجد ملفات في البوت '
 end
 send(msg.chat_id_, msg.id_,Files)
 elseif text == "متجر الملفات" or text == 'المتجر' then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/OLIFIAcom/Files_OLIFIAcom/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/OLIFIcom/Files_OLIFIcom/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
-local TextS = "\nܛ┆قائمه ملفات متجر سورس OLIFIAcom\nܛ┆الملفات المتوفره حاليا\n━━━━━━━━━━━━━\n\n"
+local TextS = "\nܛ┆قائمه ملفات متجر سورس OLIFIcom\nܛ┆الملفات المتوفره حاليا\n━━━━━━━━━━━━━\n\n"
 local TextE = "\n━━━━━━━━━━━━━\nܛ┆علامة ← {✔} تعني الملف مفعل\nܛ┆علامة ← {❌} تعني الملف معطل\n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
@@ -2302,7 +2302,7 @@ send(msg.chat_id_,msg.id_,"ܛ┆تم مسح جميع ملفات المفعله")
 elseif text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/OLIFIAcom/Files_OLIFIAcom/main/Files_OLIFIAcom/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/OLIFIcom/Files_OLIFIcom/main/Files_OLIFIcom/"..File_Name)
 if Res == 200 then
 os.execute("rm -fr Files/"..File_Name)
 send(msg.chat_id_, msg.id_,"\nܛ┆الملف ← *"..File_Name.."*\nܛ┆تم تعطيله وحذفه من البوت بنجاح") 
@@ -2313,7 +2313,7 @@ end
 elseif text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
 local File_Get = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local File_Name = File_Get[2]..'.lua'
-local Get_Json, Res = https.request("https://raw.githubusercontent.com/OLIFIAcom/Files_OLIFIAcom/main/Files_OLIFIAcom/"..File_Name)
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/OLIFIcom/Files_OLIFIcom/main/Files_OLIFIcom/"..File_Name)
 if Res == 200 then
 local ChekAuto = io.open("Files/"..File_Name,'w+')
 ChekAuto:write(Get_Json)
@@ -2404,7 +2404,7 @@ if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
 end
-if Dev_OLIFIAcom(msg) then
+if Dev_OLIFIcom(msg) then
 local Text_keyboard = 'ܛ┆اهلا بك في اوامر الكيبورد الجاهزه'
 local List_keyboard = {
 {'تفعيل تواصل البوت 🔔','تعطيل تواصل البوت 🔕'},
@@ -2452,7 +2452,7 @@ end
 redis:setex(bot_id..'Ban:Cmd:Start'..msg.sender_user_id_,60,true)
 return false
 end
-if not Dev_OLIFIAcom(msg) and not redis:sismember(bot_id..'User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Status:Lock:Twasl') then
+if not Dev_OLIFIcom(msg) and not redis:sismember(bot_id..'User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Status:Lock:Twasl') then
 send(msg.sender_user_id_,msg.id_,'ܛ┆تم ارسال رسالتك الى المطور ← { ['..UserName_Dev..'] }')    
 local List_id = {Id_Dev,msg.sender_user_id_}
 for k,v in pairs(List_id) do   
@@ -2467,7 +2467,7 @@ end
 end
 end,nil)
 end
-if Dev_OLIFIAcom(msg) then
+if Dev_OLIFIcom(msg) then
 if msg.reply_to_message_id_ ~= 0  then    
 tdcli_function({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)},function(extra, result, success) 
 if result.forward_info_.sender_user_id_ then     
@@ -2527,7 +2527,7 @@ elseif text == 'تعطيل الوضع الخدمي 〽' then
 redis:set(bot_id..'Free:Bot',true) 
 send(msg.chat_id_, msg.id_,'ܛ┆تم تعطيل البوت الخدمي') 
 elseif text == 'تغير كليشة المطور 🆕' then
-redis:set(bot_id..'GetTexting:DevOLIFIAcom'..msg.chat_id_..':'..msg.sender_user_id_,true)
+redis:set(bot_id..'GetTexting:DevOLIFIcom'..msg.chat_id_..':'..msg.sender_user_id_,true)
 send(msg.chat_id_,msg.id_,'ܛ┆ ارسل لي الكليشه الان')
 elseif text=="اذاعه خاص 👤" then 
 redis:setex(bot_id.."Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -2550,7 +2550,7 @@ redis:setex(bot_id.."Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sende
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل لي التوجيه الان\nܛ┆ليتم نشره الى المشتركين") 
 return false
 elseif text == 'ازالة كليشة المطور 🆗' then
-redis:del(bot_id..'Texting:DevOLIFIAcom')
+redis:del(bot_id..'Texting:DevOLIFIcom')
 send(msg.chat_id_, msg.id_,'ܛ┆ تم حذف كليشه المطور')
 elseif text == "تغير اسم البوت 🔄" then 
 redis:setex(bot_id.."Change:Name:Bot"..msg.sender_user_id_,300,true) 
@@ -2603,7 +2603,7 @@ if tonumber(result.id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تسطيع حظر البوت عام")
 return false 
 end
-if Dev_OLIFIAcom_User(result.id_) == true then
+if Dev_OLIFIcom_User(result.id_) == true then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تستطيع حظر المطور الاساسي عام")
 return false 
 end
@@ -2654,7 +2654,7 @@ elseif text and text:match("^تعين عدد الاعضاء (%d+)$") then
 redis:set(bot_id..'Num:Add:Bot',text:match("تعين عدد الاعضاء (%d+)$") ) 
 send(msg.chat_id_, msg.id_,'*ܛ┆ تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *')
 elseif text == 'حذف كليشه المطور' then
-redis:del(bot_id..'Texting:DevOLIFIAcom')
+redis:del(bot_id..'Texting:DevOLIFIcom')
 send(msg.chat_id_, msg.id_,'ܛ┆ تم حذف كليشه المطور')
 elseif text == "تنظيف المشتركين 🚯" then
 local pv = redis:smembers(bot_id..'Num:User:Pv')  
@@ -2714,11 +2714,11 @@ else
 taha = '\nܛ┆ تم ازالة ~ '..q..' مجموعات من البوت'
 end
 if w == 0 then
-OLIFIAcom = ''
+OLIFIcom = ''
 else
-OLIFIAcom = '\nܛ┆ تم ازالة ~'..w..' مجموعه لان البوت عضو'
+OLIFIcom = '\nܛ┆ تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*ܛ┆ عدد المجموعات الان ← { '..#group..' } مجموعه '..OLIFIAcom..''..taha..'\nܛ┆اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*ܛ┆ عدد المجموعات الان ← { '..#group..' } مجموعه '..OLIFIcom..''..taha..'\nܛ┆اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -2864,13 +2864,13 @@ if NewCmmd then
 data.message_.content_.text_ = (NewCmmd or data.message_.content_.text_)
 end
 end    
-if text == 'رفع النسخه الاحتياطيه' and tonumber(msg.reply_to_message_id_) > 0 and Dev_OLIFIAcom(msg) then   
+if text == 'رفع النسخه الاحتياطيه' and tonumber(msg.reply_to_message_id_) > 0 and Dev_OLIFIcom(msg) then   
 tdcli_function({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},function(Arg, Data)   
 if Data.content_.document_ then 
 SetFile_Groups(msg,msg.chat_id_,Data.content_.document_.document_.persistent_id_ ,Data.content_.document_.file_name_)
 end;end,nil)
 end
-if text == ("اضف مطور") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIAcom(msg) then
+if text == ("اضف مطور") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -2887,7 +2887,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 return false
 end
-if text == ("حذف مطور") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIAcom(msg) then
+if text == ("حذف مطور") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -2904,7 +2904,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 return false
 end
-if text and text:match("^اضف مطور @(.*)$") and Dev_OLIFIAcom(msg) then
+if text and text:match("^اضف مطور @(.*)$") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -2929,7 +2929,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^اضف مطور @(.*)$")}, FunctionStatus, nil)
 return false
 end
-if text and text:match("^حذف مطور @(.*)$") and Dev_OLIFIAcom(msg) then
+if text and text:match("^حذف مطور @(.*)$") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -2950,7 +2950,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^حذف مطور @(.*)$")}, FunctionStatus, nil)
 return false
 end
-if text and text:match("^اضف مطور (%d+)$") and Dev_OLIFIAcom(msg) then
+if text and text:match("^اضف مطور (%d+)$") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -2964,7 +2964,7 @@ redis:sadd(bot_id.."Developer:Bot", text:match("^اضف مطور (%d+)$"))
 Send_Options(msg,text:match("^اضف مطور (%d+)$"),"reply","ܛ┆تم ترقيته مطور في البوت")  
 return false
 end
-if text and text:match("^حذف مطور (%d+)$") and Dev_OLIFIAcom(msg) then
+if text and text:match("^حذف مطور (%d+)$") and Dev_OLIFIcom(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
@@ -2973,7 +2973,7 @@ redis:srem(bot_id.."Developer:Bot", text:match("^حذف مطور (%d+)$"))
 Send_Options(msg,text:match("^حذف مطور (%d+)$"),"reply","ܛ┆تم تنزيله من المطورين")  
 return false
 end
-if text == 'جلب نسخه احتياطيه' and Dev_OLIFIAcom(msg) or text == 'جلب نسخه الكروبات' and Dev_OLIFIAcom(msg) then
+if text == 'جلب نسخه احتياطيه' and Dev_OLIFIcom(msg) or text == 'جلب نسخه الكروبات' and Dev_OLIFIcom(msg) then
 local list = redis:smembers(bot_id..'ChekBotAdd')  
 local t = '{"IdBot": '..bot_id..',"Groups":{'  
 for k,v in pairs(list) do   
@@ -3080,7 +3080,7 @@ echo '*┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉~*\n👨🏾‍🔧┋•⊱ { الـ�
 echo '*┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉~*\n🔌┋{ مـده تـشغيـل الـسـيـرفـر }\n*»» '"$uptime"'*'
 ]]):read('*all'))  
 end
-if text == ("مسح قائمه العام") and Dev_OLIFIAcom(msg) or text == ("مسح المحظورين عام") and Dev_OLIFIAcom(msg) then
+if text == ("مسح قائمه العام") and Dev_OLIFIcom(msg) or text == ("مسح المحظورين عام") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3092,7 +3092,7 @@ return false
 end
 redis:del(bot_id.."Removal:User:Groups")
 send(msg.chat_id_, msg.id_, "ܛ┆تم مسح المحظورين عام من البوت")
-elseif text == ("مسح المطورين") and Dev_OLIFIAcom(msg) then
+elseif text == ("مسح المطورين") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3261,7 +3261,7 @@ end
 local list = redis:smembers(bot_id.."Validitys:Group"..msg.chat_id_)
 for k,v in pairs(list) do;redis:del(bot_id.."Add:Validity:Group:Rt"..v..msg.chat_id_);redis:del(bot_id.."Validitys:Group"..msg.chat_id_);end
 send(msg.chat_id_, msg.id_,"ܛ┆تم مسح صلاحيات المجموعه")
-elseif text == ("قائمه العام") and Dev_OLIFIAcom(msg) or text == ("المحظورين عام") and Dev_OLIFIAcom(msg) then
+elseif text == ("قائمه العام") and Dev_OLIFIcom(msg) or text == ("المحظورين عام") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3285,7 +3285,7 @@ if #list == 0 then
 Gban = "ܛ┆لا يوجد محظورين عام"
 end
 send(msg.chat_id_, msg.id_, Gban)
-elseif text == ("المطورين") and Dev_OLIFIAcom(msg) then
+elseif text == ("المطورين") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3524,7 +3524,7 @@ end
 end
 send(msg.chat_id_,msg.id_,t)
 end,nil)
-elseif text == ("حظر عام") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIAcom(msg) then
+elseif text == ("حظر عام") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3539,7 +3539,7 @@ if tonumber(result.sender_user_id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تسطيع حظر البوت عام")
 return false 
 end
-if Dev_OLIFIAcom_User(result.sender_user_id_) == true then
+if Dev_OLIFIcom_User(result.sender_user_id_) == true then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تستطيع حظر المطور الاساسي عام")
 return false 
 end
@@ -3548,7 +3548,7 @@ redis:sadd(bot_id.."Removal:User:Groups", result.sender_user_id_)
 KickGroup(result.chat_id_, result.sender_user_id_)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
-elseif text == ("الغاء العام") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIAcom(msg) then
+elseif text == ("الغاء العام") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3836,7 +3836,7 @@ redis:sadd(bot_id.."Keed:User:Group"..msg.chat_id_, result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","ܛ┆تم تقييده")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
-elseif text and text:match("^حظر عام @(.*)$") and Dev_OLIFIAcom(msg) then
+elseif text and text:match("^حظر عام @(.*)$") and Dev_OLIFIcom(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
@@ -3851,7 +3851,7 @@ if tonumber(result.id_) == tonumber(bot_id) then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تسطيع حظر البوت عام")
 return false 
 end
-if Dev_OLIFIAcom_User(result.id_) == true then
+if Dev_OLIFIcom_User(result.id_) == true then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تستطيع حظر المطور الاساسي عام")
 return false 
 end
@@ -3862,7 +3862,7 @@ send(msg.chat_id_, msg.id_,"ܛ┆المعرف غلط ")
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^حظر عام @(.*)$")}, FunctionStatus, nil)
-elseif text and text:match("^الغاء العام @(.*)$") and Dev_OLIFIAcom(msg) then
+elseif text and text:match("^الغاء العام @(.*)$") and Dev_OLIFIcom(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
 local textchuser = redis:get(bot_id..'text:ch:user')
 if textchuser then
@@ -4484,12 +4484,12 @@ send(msg.chat_id_, msg.id_,"ܛ┆المعرف غلط ")
 end
 end
 tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^طرد @(.*)$")}, FunctionStatus, nil)
-elseif text and text:match("^حظر عام (%d+)$") and Dev_OLIFIAcom(msg) then
+elseif text and text:match("^حظر عام (%d+)$") and Dev_OLIFIcom(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
 end
-if Dev_OLIFIAcom_User(text:match("^حظر عام (%d+)$")) == true then
+if Dev_OLIFIcom_User(text:match("^حظر عام (%d+)$")) == true then
 send(msg.chat_id_, msg.id_, "ܛ┆لا تستطيع حظر المطور الاساسي عام")
 return false 
 end
@@ -4499,7 +4499,7 @@ return false
 end
 redis:sadd(bot_id.."Removal:User:Groups", text:match("^حظر عام (%d+)$"))
 Send_Options(msg,text:match("^حظر عام (%d+)$"),"reply","ܛ┆تم حظره عام من المجموعات")  
-elseif text and text:match("^الغاء العام (%d+)$") and Dev_OLIFIAcom(msg) then
+elseif text and text:match("^الغاء العام (%d+)$") and Dev_OLIFIcom(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
@@ -5190,16 +5190,16 @@ send(msg.chat_id_, msg.id_,Text)
 elseif text == "تعطيل اطردني" and Owner(msg) then  
 redis:set(bot_id.."Status:Cheking:Kick:Me:Group"..msg.chat_id_,true)  
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل امر اطردني") 
-elseif text == "تفعيل المغادره" and Dev_OLIFIAcom(msg) then   
+elseif text == "تفعيل المغادره" and Dev_OLIFIcom(msg) then   
 redis:del(bot_id.."Status:Lock:Left"..msg.chat_id_)  
 send(msg.chat_id_, msg.id_,"ܛ┆تم تفعيل مغادرة البوت") 
-elseif text == "تعطيل المغادره" and Dev_OLIFIAcom(msg) then  
+elseif text == "تعطيل المغادره" and Dev_OLIFIcom(msg) then  
 redis:set(bot_id.."Status:Lock:Left"..msg.chat_id_,true)   
 send(msg.chat_id_, msg.id_, "ܛ┆تم تعطيل مغادرة البوت") 
-elseif text == "تفعيل الاذاعه" and Dev_OLIFIAcom(msg) then  
+elseif text == "تفعيل الاذاعه" and Dev_OLIFIcom(msg) then  
 redis:del(bot_id.."Status:Broadcasting:Bot") 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تفعيل الاذاعه \nܛ┆الان يمكن للمطورين الاذاعه" ) 
-elseif text == "تعطيل الاذاعه" and Dev_OLIFIAcom(msg) then  
+elseif text == "تعطيل الاذاعه" and Dev_OLIFIcom(msg) then  
 redis:set(bot_id.."Status:Broadcasting:Bot",true) 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه") 
 elseif text == "تعطيل اوامر التحشيش" and Owner(msg) then    
@@ -5226,10 +5226,10 @@ send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الالعاب")
 elseif text == "تفعيل الالعاب" and Owner(msg) then  
 redis:set(bot_id.."Status:Lock:Game:Group"..msg.chat_id_,true) 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تفعيل الالعاب") 
-elseif text == 'تفعيل البوت الخدمي' and Dev_OLIFIAcom(msg) then  
+elseif text == 'تفعيل البوت الخدمي' and Dev_OLIFIcom(msg) then  
 redis:del(bot_id..'Free:Bot') 
 send(msg.chat_id_, msg.id_,'ܛ┆تم تفعيل البوت الخدمي \nܛ┆الان يمكن الجميع تفعيله') 
-elseif text == 'تعطيل البوت الخدمي' and Dev_OLIFIAcom(msg) then  
+elseif text == 'تعطيل البوت الخدمي' and Dev_OLIFIcom(msg) then  
 redis:set(bot_id..'Free:Bot',true) 
 send(msg.chat_id_, msg.id_,'ܛ┆تم تعطيل البوت الخدمي') 
 elseif text == "تعطيل الطرد" and Constructor(msg) or text == "تعطيل الحظر" and Constructor(msg) then
@@ -5393,8 +5393,8 @@ send(msg.chat_id_,msg.id_,"ܛ┆ارسل لي الترحيب الان".."\nܛ┆
 elseif text == "ضع قوانين" and Admin(msg) or text == "وضع قوانين" and Admin(msg) then 
 redis:setex(bot_id.."Redis:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_,msg.id_,"ܛ┆ارسل لي القوانين الان")  
-elseif text == 'وضع كليشه المطور' and Dev_OLIFIAcom(msg) then
-redis:set(bot_id..'GetTexting:DevOLIFIAcom'..msg.chat_id_..':'..msg.sender_user_id_,true)
+elseif text == 'وضع كليشه المطور' and Dev_OLIFIcom(msg) then
+redis:set(bot_id..'GetTexting:DevOLIFIcom'..msg.chat_id_..':'..msg.sender_user_id_,true)
 send(msg.chat_id_,msg.id_,'ܛ┆ ارسل لي الكليشه الان')
 elseif text and text:match("^ضع اسم (.*)") and Owner(msg) or text and text:match("^وضع اسم (.*)") and Owner(msg) then 
 local Name = text:match("^ضع اسم (.*)") or text:match("^وضع اسم (.*)") 
@@ -5409,7 +5409,7 @@ else
 send(msg.chat_id_,msg.id_,"ܛ┆ تم تغيير اسم المجموعه الى {["..Name.."]}")  
 end
 end,nil) 
-elseif text == 'روابط الكروبات' and Dev_OLIFIAcom(msg) then
+elseif text == 'روابط الكروبات' and Dev_OLIFIcom(msg) then
 local list = redis:smembers(bot_id..'ChekBotAdd') 
 test = 'ܛ┆روابط الكروبات \n\n'
 for k,v in pairs(list) do 
@@ -5648,7 +5648,7 @@ redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
 elseif text == "حذف رد" and Owner(msg) then
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل الان الكلمه لحذفها من ردود المدير")
 redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true2")
-elseif text == ("مسح ردود المطور") and Dev_OLIFIAcom(msg) then 
+elseif text == ("مسح ردود المطور") and Dev_OLIFIcom(msg) then 
 local list = redis:smembers(bot_id.."List:Rd:Sudo")
 for k,v in pairs(list) do
 redis:del(bot_id.."Add:Rd:Sudo:Gif"..v)   
@@ -5662,7 +5662,7 @@ redis:del(bot_id.."Add:Rd:Sudo:Audio"..v)
 redis:del(bot_id.."List:Rd:Sudo")
 end
 send(msg.chat_id_, msg.id_,"ܛ┆تم حذف ردود المطور")
-elseif text == ("ردود المطور") and Dev_OLIFIAcom(msg) then 
+elseif text == ("ردود المطور") and Dev_OLIFIcom(msg) then 
 local list = redis:smembers(bot_id.."List:Rd:Sudo")
 text = "\nܛ┆قائمة ردود المطور \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
 for k,v in pairs(list) do
@@ -5693,10 +5693,10 @@ if #list == 0 then
 text = "ܛ┆لاتوجد ردود للمطور"
 end
 send(msg.chat_id_, msg.id_,"["..text.."]")
-elseif text == "اضف رد للكل" and Dev_OLIFIAcom(msg) then 
+elseif text == "اضف رد للكل" and Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل الان الكلمه لاضافتها في ردود المكور ")
 redis:set(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_,true)
-elseif text == "حذف رد للكل" and Dev_OLIFIAcom(msg) then 
+elseif text == "حذف رد للكل" and Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل الان الكلمه لحذفها من ردود المطور")
 redis:set(bot_id.."Set:On"..msg.sender_user_id_..":"..msg.chat_id_,true)
 end
@@ -5704,7 +5704,7 @@ if text and text:match("^تنزيل الكل @(.*)$") and Owner(msg) then
 print('&&&')
 function FunctionStatus(extra, result, success)
 if (result.id_) then
-if Dev_OLIFIAcom_User(result.id_) == true then
+if Dev_OLIFIcom_User(result.id_) == true then
 send(msg.chat_id_, msg.id_,"ܛ┆لا تستطيع تنزيل المطور الاساسي")
 return false 
 end
@@ -5729,7 +5729,7 @@ else
 
 send(msg.chat_id_, msg.id_,"\nܛ┆ليس لديه رتب حتى استطيع تنزيله \n")
 end
-if Dev_OLIFIAcom_User(msg.sender_user_id_) == true then
+if Dev_OLIFIcom_User(msg.sender_user_id_) == true then
 redis:srem(bot_id.."Developer:Bot", result.id_)
 redis:srem(bot_id.."President:User"..msg.chat_id_,result.id_)
 redis:srem(bot_id.."Basic:User"..msg.chat_id_,result.id_)
@@ -5763,7 +5763,7 @@ tdcli_function ({ID = "SearchPublicChat",username_ = text:match("^تنزيل ا�
 end
 if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Owner(msg) then
 function Function_Status(extra, result, success)
-if Dev_OLIFIAcom_User(result.sender_user_id_) == true then
+if Dev_OLIFIcom_User(result.sender_user_id_) == true then
 send(msg.chat_id_, msg.id_,"ܛ┆لا تستطيع تنزيل المطور الاساسي")
 return false 
 end
@@ -5788,7 +5788,7 @@ else
 
 send(msg.chat_id_, msg.id_,"\nܛ┆ليس لديه رتب حتى استطيع تنزيله \n")
 end
-if Dev_OLIFIAcom_User(msg.sender_user_id_) == true then
+if Dev_OLIFIcom_User(msg.sender_user_id_) == true then
 redis:srem(bot_id.."Developer:Bot", result.sender_user_id_)
 redis:srem(bot_id.."President:User"..msg.chat_id_,result.sender_user_id_)
 redis:srem(bot_id.."Basic:User"..msg.chat_id_,result.sender_user_id_)
@@ -5882,32 +5882,32 @@ local BotName = {
 }
 BotNameText = math.random(#BotName)
 send(msg.chat_id_, msg.id_,BotName[BotNameText]) 
-elseif text == "تغير اسم البوت" and Dev_OLIFIAcom(msg) or text == "تغيير اسم البوت" and Dev_OLIFIAcom(msg) then 
+elseif text == "تغير اسم البوت" and Dev_OLIFIcom(msg) or text == "تغيير اسم البوت" and Dev_OLIFIcom(msg) then 
 redis:setex(bot_id.."Change:Name:Bot"..msg.sender_user_id_,300,true) 
 send(msg.chat_id_, msg.id_,"ܛ┆ ارسل لي الاسم الان ")  
 elseif text=="اذاعه خاص" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then 
-if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIAcom(msg) then 
+if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه من قبل المطور الاساسي !")
 return false end
 redis:setex(bot_id.."Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل لي المنشور الان\nܛ┆يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\nܛ┆لالغاء الاذاعه ارسل : الغاء") 
 return false
 elseif text=="اذاعه" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then 
-if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIAcom(msg) then 
+if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه من قبل المطور الاساسي !")
 return false end
 redis:setex(bot_id.."Broadcasting:Groups" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل لي المنشور الان\nܛ┆يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\nܛ┆لالغاء الاذاعه ارسل : الغاء") 
 return false
 elseif text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and DeveloperBot(msg) then 
-if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIAcom(msg) then 
+if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه من قبل المطور الاساسي !")
 return false end
 redis:setex(bot_id.."Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"ܛ┆ارسل لي المنشور الان\nܛ┆يمكنك ارسال -{ صوره - ملصق - متحركه - رساله }\nܛ┆لالغاء الاذاعه ارسل : الغاء") 
 return false
 elseif text=="اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0  and DeveloperBot(msg) then 
-if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIAcom(msg) then 
+if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه من قبل المطور الاساسي !")
 return false end
 redis:setex(bot_id.."Broadcasting:Groups:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5923,7 +5923,7 @@ send(msg.chat_id_, msg.id_,'ܛ┆عـليك الاشـتࢪاك في قنـاة 
 end
 return false
 end
-if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIAcom(msg) then 
+if redis:get(bot_id.."Status:Broadcasting:Bot") and not Dev_OLIFIcom(msg) then 
 send(msg.chat_id_, msg.id_,"ܛ┆تم تعطيل الاذاعه من قبل المطور الاساسي !")
 return false end
 redis:setex(bot_id.."Broadcasting:Users:Fwd" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -6937,7 +6937,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆ارسل { م4 } ← اوامر المنشئين
 ܛ┆ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -6982,7 +6982,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆الجهات
 ܛ┆الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7030,7 +7030,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆المطرودين ، البوتات ، الصوره
 ܛ┆الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7070,7 +7070,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اضف ، حذف ← { رد }
 ܛ┆تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7097,7 +7097,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اضف ، حذف ← { امر }
 ܛ┆الاوامر المضافه ، مسح الاوامر المضافه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7139,7 +7139,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ܛ┆اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIAcom
+ܛ┆قناة البوت ←* @OLIFIcom
 ]]) 
 elseif text == 'الالعاب' then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7231,7 +7231,7 @@ send(msg.chat_id_, msg.id_, "ܛ┆تم اضافه عدد الرسائل : "..tex
 end
 tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},reply, nil)
 return false
-elseif text == "تنظيف المشتركين" and Dev_OLIFIAcom(msg) then
+elseif text == "تنظيف المشتركين" and Dev_OLIFIcom(msg) then
 local pv = redis:smembers(bot_id..'Num:User:Pv')  
 local sendok = 0
 for i = 1, #pv do
@@ -7254,7 +7254,7 @@ end,nil)
 end,nil)
 end
 return false
-elseif text == "تنظيف الكروبات" and Dev_OLIFIAcom(msg) then
+elseif text == "تنظيف الكروبات" and Dev_OLIFIcom(msg) then
 local group = redis:smembers(bot_id..'ChekBotAdd')  
 local w = 0
 local q = 0
@@ -7289,11 +7289,11 @@ else
 taha = '\nܛ┆ تم ازالة ~ '..q..' مجموعات من البوت'
 end
 if w == 0 then
-OLIFIAcom = ''
+OLIFIcom = ''
 else
-OLIFIAcom = '\nܛ┆ تم ازالة ~'..w..' مجموعه لان البوت عضو'
+OLIFIcom = '\nܛ┆ تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*ܛ┆ عدد المجموعات الان ← { '..#group..' } مجموعه '..OLIFIAcom..''..taha..'\nܛ┆اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*ܛ┆ عدد المجموعات الان ← { '..#group..' } مجموعه '..OLIFIcom..''..taha..'\nܛ┆اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -7330,7 +7330,7 @@ elseif text and text:match("^رفع القيود @(.*)") and Owner(msg) then
 local username = text:match("^رفع القيود @(.*)") 
 function Function_Status(extra, result, success)
 if result.id_ then
-if Dev_OLIFIAcom(msg) then
+if Dev_OLIFIcom(msg) then
 redis:srem(bot_id.."Removal:User:Groups",result.id_)
 redis:srem(bot_id.."Removal:User:Group"..msg.chat_id_,result.id_)
 redis:srem(bot_id.."Silence:User:Group"..msg.chat_id_,result.id_)
@@ -7358,7 +7358,7 @@ end
 return false
 end
 function Function_Status(extra, result, success)
-if Dev_OLIFIAcom(msg) then
+if Dev_OLIFIcom(msg) then
 redis:srem(bot_id.."Removal:User:Groups",result.sender_user_id_)
 redis:srem(bot_id.."Removal:User:Group"..msg.chat_id_,result.sender_user_id_)
 redis:srem(bot_id.."Silence:User:Group"..msg.chat_id_,result.sender_user_id_)
@@ -7499,7 +7499,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"ܛ┆ حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "JJJyT")
+local UserName = (b.username_ or "OLIFIcom")
 send(msg.chat_id_, msg.id_,"ܛ┆منشئ المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
@@ -7518,25 +7518,25 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"ܛ┆حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "JJJyT")
+local UserName = (b.username_ or "OLIFIcom")
 send(msg.chat_id_, msg.id_,"ܛ┆تم ترقية منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."President:User"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
-elseif text and text:match("^تعين عدد الاعضاء (%d+)$") and Dev_OLIFIAcom(msg) then
+elseif text and text:match("^تعين عدد الاعضاء (%d+)$") and Dev_OLIFIcom(msg) then
 redis:set(bot_id..'Num:Add:Bot',text:match("تعين عدد الاعضاء (%d+)$") ) 
 send(msg.chat_id_, msg.id_,'*ܛ┆ تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *')
 elseif text =='الاحصائيات' and DeveloperBot(msg) then 
 send(msg.chat_id_, msg.id_,'*ܛ┆عدد احصائيات البوت الكامله \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nܛ┆عدد المجموعات : '..(redis:scard(bot_id..'ChekBotAdd') or 0)..'\nܛ┆عدد المشتركين : '..(redis:scard(bot_id..'Num:User:Pv') or 0)..'*')
 elseif text == 'المطور' or text == 'مطور' then
-local TextingDevOLIFIAcom = redis:get(bot_id..'Texting:DevOLIFIAcom')
-if TextingDevOLIFIAcom then 
-send(msg.chat_id_, msg.id_,TextingDevOLIFIAcom)
+local TextingDevOLIFIcom = redis:get(bot_id..'Texting:DevOLIFIcom')
+if TextingDevOLIFIcom then 
+send(msg.chat_id_, msg.id_,TextingDevOLIFIcom)
 else
 send(msg.chat_id_, msg.id_,'['..UserName_Dev..']')
 end
-elseif text == 'حذف كليشه المطور' and Dev_OLIFIAcom(msg) then
-redis:del(bot_id..'Texting:DevOLIFIAcom')
+elseif text == 'حذف كليشه المطور' and Dev_OLIFIcom(msg) then
+redis:del(bot_id..'Texting:DevOLIFIcom')
 send(msg.chat_id_, msg.id_,'ܛ┆ تم حذف كليشه المطور')
 end
 end
@@ -7560,7 +7560,7 @@ send(msg.chat_id_, msg.id_,'ܛ┆البوت ليس ادمن يرجى ترقيت�
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = msg.chat_id_:gsub("-100","")}, function(arg,data)  
-if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Num:Add:Bot') or 0) and not Dev_OLIFIAcom(msg) then
+if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Num:Add:Bot') or 0) and not Dev_OLIFIcom(msg) then
 send(msg.chat_id_, msg.id_,'ܛ┆لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Num:Add:Bot') or 0)..'* عضو')
 return false
 end
@@ -7603,7 +7603,7 @@ LinkGp = linkgpp.result
 else
 LinkGp = 'لا يوجد'
 end
-if not Dev_OLIFIAcom(msg) then
+if not Dev_OLIFIcom(msg) then
 sendText(Id_Dev,'ܛ┆تم تفعيل مجموعه جديده\n'..'\nܛ┆بواسطة : '..Name..''..'\nܛ┆ايدي المجموعه : `'..IdChat..'`'..'\nܛ┆عدد اعضاء المجموعه *: '..NumMember..'*'..'\nܛ┆اسم المجموعه : ['..NameChat..']'..'\nܛ┆الرابط : ['..LinkGp..']',0,'md')
 end
 end
@@ -7651,7 +7651,7 @@ LinkGp = linkgpp.result
 else
 LinkGp = 'لا يوجد'
 end
-if not Dev_OLIFIAcom(msg) then
+if not Dev_OLIFIcom(msg) then
 sendText(Id_Dev,'ܛ┆تم تعطيل مجموعه جديده\n'..'\nܛ┆بواسطة : '..Name..''..'\nܛ┆ايدي المجموعه : `'..IdChat..'`\nܛ┆اسم المجموعه : ['..NameChat..']',0,'md')
 end
 end
@@ -7694,7 +7694,7 @@ if redis:sismember(bot_id..'ChekBotAdd',msg.chat_id_) then
 send(msg.chat_id_, msg.id_,'ܛ┆تم تفعيل المجموعه مسبقا')
 return false
 end
-if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Num:Add:Bot') or 0) and not Dev_OLIFIAcom(msg) then
+if tonumber(data.member_count_) < tonumber(redis:get(bot_id..'Num:Add:Bot') or 0) and not Dev_OLIFIcom(msg) then
 send(msg.chat_id_, msg.id_,'ܛ┆لا تستطيع تفعيل المجموعه بسبب قلة عدد اعضاء المجموعه يجب ان يكون اكثر من *:'..(redis:get(bot_id..'Num:Add:Bot') or 0)..'* عضو')
 return false
 end
@@ -7732,7 +7732,7 @@ local NameChat = NameChat:gsub("`","")
 local NameChat = NameChat:gsub("*","") 
 local NameChat = NameChat:gsub("{","") 
 local NameChat = NameChat:gsub("}","") 
-if not Dev_OLIFIAcom(msg) then
+if not Dev_OLIFIcom(msg) then
 sendText(Id_Dev,'ܛ┆تم تفعيل مجموعه جديده\nܛ┆بواسطة : '..Name..'\nܛ┆موقعه في المجموعه : '..Status_Rt..'\nܛ┆ايدي المجموعه : `'..msg.chat_id_..'`\nܛ┆عدد اعضاء المجموعه *: '..NumMember..'*\nܛ┆اسم المجموعه : ['..NameChat..']\nܛ┆الرابط : ['..LinkChat..']',0,'md')
 end
 end
@@ -7898,8 +7898,8 @@ redis:del(bot_id..'Spam_For_Bot'..msg.sender_user_id_)
 end
 
 --------------------------------------------------------------------------------------------------------------
-Dev_OLIFIAcom_File(msg,data)
-FilesOLIFIAcomBot(msg,data)
+Dev_OLIFIcom_File(msg,data)
+FilesOLIFIcomBot(msg,data)
 elseif data.ID == ("UpdateMessageEdited") then
 tdcli_function ({ID = "GetMessage",chat_id_ = data.chat_id_,message_id_ = tonumber(data.message_id_)},function(extra, result, success)
 local textedit = result.content_.text_
