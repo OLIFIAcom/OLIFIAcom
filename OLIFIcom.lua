@@ -483,7 +483,7 @@ height_ = 0
 end
 ------------------------------------------------------------------------------------------------------------
 function tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua'
+url = 'https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua'
 file_path = 'Script.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -503,7 +503,7 @@ end
 ------------------------------------------------------------------------------------------------------------ 
 function tdcli_update_callback_value_(Data) 
 tdcli_update_callback_value(Data) 
-url = 'https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua'
+url = 'https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua'
 file_path = 'OLIFIcom.lua'
 local respbody = {} 
 local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
@@ -2251,12 +2251,16 @@ elseif text == "تحديث" then
 dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث ملفات البوت")
 elseif text == 'تحديث السورس 🔂' then
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
+os.execute('rm -rf OLIFIcom.lua')
+download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua','Script.lua') 
+dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 elseif text == 'تحديث السورس' then
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/OLIFIcom.lua','OLIFIcom.lua') 
-download_to_file('https://raw.githubusercontent.com/OLIFIcom/OLIFIcom/main/Script.lua','Script.lua') 
+os.execute('rm -rf OLIFIcom.lua')
+download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/OLIFIcom.lua','OLIFIcom.lua') 
+download_to_file('https://raw.githubusercontent.com/OLIFIAcom/OLIFIAcom/main/Script.lua','Script.lua') 
+dofile("OLIFIcom.lua")  
 send(msg.chat_id_, msg.id_, "ܛ┆تم تحديث السورس وتنزيل اخر تحديث للملفات")
 end
 if text == 'الملفات' then
