@@ -70,7 +70,7 @@ done
 ]])
 Run_File_OLIFIcom:close()
 ------------------------------------------------------------------------------------------------------------
-local Run_SM = io.open("Of", 'w')
+local Run_SM = io.open("tk", 'w')
 Run_SM:write([[
 #!/usr/bin/env bash
 cd $HOME/OLIFIcom
@@ -84,8 +84,8 @@ Run_SM:close()
 io.popen("mkdir Files")
 os.execute('chmod +x tg')
 os.execute('chmod +x OLIFIcom')
-os.execute('chmod +x Of')
-os.execute('./Of')
+os.execute('chmod +x tk')
+os.execute('./tk')
 Status = true
 else   
 f:close()  
@@ -6912,7 +6912,8 @@ elseif text == 'السورس' or text == 'سورس' or text == 'ياسورس'  t
 send(msg.chat_id_, msg.id_,[[
 
 [Olifay Team ](t.me/jJJyT)     
-------------------
+_____________________
+
 [Channel Olifay  ](t.me/jJJyT)     
 
 [Developer Olifay ](t.me/JAN_SAUD)     
