@@ -577,7 +577,7 @@ end
 function Send_Options(msg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "OLIFIcom")
+local UserName = (data.username_ or "JJJyT")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch or 'OLIFIcom'
 end
@@ -617,7 +617,7 @@ end
 function Send_Optionspv(chat,idmsg,user_id,status,text)
 tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data) 
 if data.first_name_ ~= false then
-local UserName = (data.username_ or "OLIFIcom")
+local UserName = (data.username_ or "JJJyT")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
 data.first_name_ = gmatch
 end
@@ -3056,13 +3056,8 @@ File:close()
 sendDocument(msg.chat_id_, msg.id_,'./lib/'..bot_id..'.json', '📮┇ عدد مجموعات التي في البوت { '..#list..'}')
 end
 if text == 'تنزيل جميع الرتب' and BasicBuilder(msg) then
-if VHHHHH(msg.sender_user_id_) == false then
-local textchuser = redis:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'ܛ┆عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ܛ┆قنـاة البـوت ←  ['..redis:get(bot_id..'add:ch:username')..']')
-end
+if AddChannel(msg.sender_user_id_) == false then
+send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
 end
 redis:del(bot_id..'Constructor:Group'..msg.chat_id_)
@@ -3072,13 +3067,8 @@ redis:del(bot_id..'Vip:Group'..msg.chat_id_)
 send(msg.chat_id_, msg.id_,'ܛ┆تم تنزيل الكل من جميع الرتب\n{المنشئين ، المدراء ، الادمنيه ، المميزين}')  
 end
 if text == 'السيرفر' and DeveloperBot(msg) then
-if VHHHHH(msg.sender_user_id_) == false then
-local textchuser = redis:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'ܛ┆عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ܛ┆قنـاة البـوت ←  ['..redis:get(bot_id..'add:ch:username')..']')
-end
+if AddChannel(msg.sender_user_id_) == false then
+send(msg.chat_id_,msg.id_,'لا يمكنك استخدام البوت \n اشترك في قناة السورس اولاً : \n @JJJYT')   
 return false
 end
 send(msg.chat_id_, msg.id_, io.popen([[
@@ -6952,7 +6942,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆ارسل { م4 } ← اوامر المنشئين
 ܛ┆ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -6997,7 +6987,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆الجهات
 ܛ┆الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7045,7 +7035,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆المطرودين ، البوتات ، الصوره
 ܛ┆الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7085,7 +7075,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اضف ، حذف ← { رد }
 ܛ┆تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7112,7 +7102,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اضف ، حذف ← { امر }
 ܛ┆الاوامر المضافه ، مسح الاوامر المضافه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7154,7 +7144,7 @@ send(msg.chat_id_, msg.id_,[[*
 ܛ┆اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ܛ┆اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-ܛ┆قناة البوت ←* @OLIFIcom
+ܛ┆قناة البوت ←* @JJJyT
 ]]) 
 elseif text == 'الالعاب' then
 if VHHHHH(msg.sender_user_id_) == false then
@@ -7514,7 +7504,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"ܛ┆ حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "OLIFIcom")
+local UserName = (b.username_ or "JJJyT")
 send(msg.chat_id_, msg.id_,"ܛ┆منشئ المجموعه ~ ["..b.first_name_.."](T.me/"..UserName..")")  
 end,nil)   
 end
@@ -7533,7 +7523,7 @@ if b.first_name_ == false then
 send(msg.chat_id_, msg.id_,"ܛ┆حساب المنشئ محذوف")
 return false  
 end
-local UserName = (b.username_ or "OLIFIcom")
+local UserName = (b.username_ or "JJJyT")
 send(msg.chat_id_, msg.id_,"ܛ┆تم ترقية منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."President:User"..msg.chat_id_,b.id_)
 end,nil)   
