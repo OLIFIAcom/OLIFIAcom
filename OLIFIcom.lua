@@ -1568,27 +1568,27 @@ redis:del(bot_id.."Broadcasting:Users" .. msg.chat_id_ .. ":" .. msg.sender_user
 return false
 end
 ------------------------------------------------------------------------------------------------------------
-if text and text:match("^- تغير الاشتراك 🧾 .") and Dev_OLIFIcom(msg) then  
+if text and text:match("^- تغير الاشتراك 🧾 .") and Dev_Hso(msg) then  
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي معرف القناة')
 return false  
 end
-if text and text:match("تغير رساله الاشتراك ⚙") and Dev_OLIFIcom(msg) then  
+if text and text:match("تغير رساله الاشتراك ⚙") and Dev_Hso(msg) then  
 redis:setex(bot_id.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي النص الذي تريده')
 return false  
 end
-if text == "حذف رساله الاشتراك ℹ ." and Dev_OLIFIcom(msg) then  
+if text == "حذف رساله الاشتراك ℹ ." and Dev_Hso(msg) then  
 redis:del(bot_id..'text:ch:user')
 send(msg.chat_id_, msg.id_, "ܛ┆تم مسح رساله الاشتراك ")
 return false  
 end
-if text and text:match("^- تعين قناة الاشتراك 📁 .$") and Dev_OLIFIcom(msg) then  
+if text and text:match("^- تعين قناة الاشتراك 📁 .$") and Dev_Hso(msg) then  
 redis:setex(bot_id.."add:ch:jm" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 360, true)  
 send(msg.chat_id_, msg.id_, 'ܛ┆حسنآ ارسل لي معرف القناة')
 return false  
 end
-if text == "- تفعيل الاشتراك الاجباري 📄 ." and Dev_OLIFIcom(msg) then  
+if text == "- تفعيل الاشتراك الاجباري 📄 ." and Dev_Hso(msg) then  
 if redis:get(bot_id..'add:ch:id') then
 local addchusername = redis:get(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_,"ܛ┆الاشتراك الاجباري مفعل \nܛ┆على القناة » ["..addchusername.."]")
@@ -1598,13 +1598,13 @@ send(msg.chat_id_, msg.id_,"ܛ┆اهلا عزيزي المطور \nܛ┆ارس�
 end
 return false  
 end
-if text == "- تعطيل الاشتراك الاجباري 📄 ." and Dev_OLIFIcom(msg) then  
+if text == "- تعطيل الاشتراك الاجباري 📄 ." and Dev_Hso(msg) then  
 redis:del(bot_id..'add:ch:id')
 redis:del(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_, "ܛ┆تم تعطيل الاشتراك الاجباري ")
 return false  
 end
-if text == "- الاشتراك الاجباري 📮 ." and Dev_OLIFIcom(msg) then  
+if text == "- الاشتراك الاجباري 📮 ." and Dev_Hso(msg) then  
 if redis:get(bot_id..'add:ch:username') then
 local addchusername = redis:get(bot_id..'add:ch:username')
 send(msg.chat_id_, msg.id_, "ܛ┆تم تفعيل الاشتراك الاجباري \nܛ┆على القناة » ["..addchusername.."]")
