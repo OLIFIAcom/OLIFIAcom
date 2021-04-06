@@ -217,7 +217,7 @@ return var
 end
 --- اجباري السورس
 function AddChannel(User) 
-local url , res = https.request('https://forhassan.ml/Black/Ja.php?id='..User..'') data = JSON.decode(url)
+local url , res = https.request('https://black-source.tk/BlackTeAM/ChatMember.php?ja='..User..'') data = JSON.decode(url)
 if data.Ch_Member.info ~= true then
 Var = false
 else
